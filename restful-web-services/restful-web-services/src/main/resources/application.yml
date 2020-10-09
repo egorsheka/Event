@@ -1,0 +1,12 @@
+
+
+spring:
+  datasource:
+    url: jdbc:postgresql:sam_app_db
+    username: postgres
+    password: postgres
+logging:
+  level:
+    org:
+      springframework:
+        debug

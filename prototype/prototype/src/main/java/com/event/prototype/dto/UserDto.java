@@ -12,9 +12,9 @@ import lombok.ToString;
 @NoArgsConstructor()
 @ToString
 @EqualsAndHashCode
-public class User {
+public class UserDto {
 
-    private String name;
+    private String username;
     private String password;
 
 }

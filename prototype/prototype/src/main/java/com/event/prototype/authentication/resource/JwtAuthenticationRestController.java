@@ -1,8 +1,8 @@
-package com.event.prototype.restfulwebservices.jwt.resource;
+package com.event.prototype.authentication.resource;
 
 
-import com.event.prototype.restfulwebservices.jwt.JwtTokenUtil;
-import com.event.prototype.restfulwebservices.jwt.JwtUserDetails;
+import com.event.prototype.authentication.JwtTokenUtil;
+import com.event.prototype.authentication.JwtUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -47,7 +47,7 @@ public class JwtAuthenticationRestController {
     return ResponseEntity.ok(new JwtTokenResponse(token));
   }
 
-  @RequestMapping(value = "${jwt.refresh.token.uri}", method = RequestMethod.GET)
+  @GetMapping(value = "${jwt.refresh.token.uri}")
   public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
     String authToken = request.getHeader(tokenHeader);
     final String token = authToken.substring(7);
@@ -61,6 +61,11 @@ public class JwtAuthenticationRestController {
       return ResponseEntity.badRequest().body(null);
     }
   }
+
+//  @PostMapping(value = "/registration")
+//  public ResponseEntity<?> registerUser(@RequestBody User user){
+//
+//  }
 
   @ExceptionHandler({ AuthenticationException.class })
   public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {

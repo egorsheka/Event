@@ -1,4 +1,4 @@
-package com.event.prototype.restfulwebservices.jwt.resource;
+package com.event.prototype.authentication.resource;
 
 import java.io.Serializable;
 

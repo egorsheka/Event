@@ -1,4 +1,4 @@
-package com.event.prototype.restfulwebservices.jwt;
+package com.event.prototype.authentication;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

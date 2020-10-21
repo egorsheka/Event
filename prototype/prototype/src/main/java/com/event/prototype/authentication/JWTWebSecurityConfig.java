@@ -1,4 +1,4 @@
-package com.event.prototype.restfulwebservices.jwt;
+package com.event.prototype.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

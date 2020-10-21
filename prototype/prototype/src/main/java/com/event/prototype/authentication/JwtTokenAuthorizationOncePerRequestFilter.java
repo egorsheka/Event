@@ -1,4 +1,4 @@
-package com.event.prototype.restfulwebservices.jwt;
+package com.event.prototype.authentication;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;

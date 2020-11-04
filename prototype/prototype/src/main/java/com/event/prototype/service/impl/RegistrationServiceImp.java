@@ -4,6 +4,7 @@ import com.event.prototype.authentication.JwtTokenUtil;
 import com.event.prototype.authentication.resource.AuthenticationException;
 import com.event.prototype.authentication.resource.JwtTokenResponse;
 import com.event.prototype.entity.User;
+import com.event.prototype.enums.UserRole;
 import com.event.prototype.repository.UserRepository;
 import com.event.prototype.service.RegistrationService;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -27,7 +28,7 @@ public class RegistrationServiceImp implements RegistrationService {
 
     @Override
     public JwtTokenResponse register(User user) {
-        user.setRole("user");
+        user.setRole(UserRole.USER);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(user.getPassword()));
         try {
@@ -35,7 +36,7 @@ public class RegistrationServiceImp implements RegistrationService {
         } catch (DataIntegrityViolationException e) {
             throw new AuthenticationException("USER_ALREADY_EXISTS", e);
         }
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(user.getUsername());
+        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(user.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return new JwtTokenResponse(token);
     }

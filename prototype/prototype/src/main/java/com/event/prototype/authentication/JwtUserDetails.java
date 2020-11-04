@@ -21,11 +21,11 @@ public class JwtUserDetails implements UserDetails {
   private final Collection<? extends GrantedAuthority> authorities;
 
   public JwtUserDetails(User user) {
-    this.username = user.getUsername();
+    this.username = user.getEmail();
     this.password = user.getPassword();
 
     List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-    authorities.add(new SimpleGrantedAuthority(user.getRole()));
+    authorities.add(new SimpleGrantedAuthority(user.getRole().toString().toUpperCase()));
 
     this.authorities = authorities;
   }

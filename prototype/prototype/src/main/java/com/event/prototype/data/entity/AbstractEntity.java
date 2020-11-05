@@ -1,4 +1,4 @@
-package com.event.prototype.entity;
+package com.event.prototype.data.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.event.prototype.enums;
+package com.event.prototype.data.enums;
 
 public enum UserRole {
     USER, ADMIN

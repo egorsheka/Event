@@ -1,6 +1,6 @@
 package com.event.prototype.authentication;
 
-import com.event.prototype.entity.User;
+import com.event.prototype.data.entity.User;
 import com.event.prototype.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

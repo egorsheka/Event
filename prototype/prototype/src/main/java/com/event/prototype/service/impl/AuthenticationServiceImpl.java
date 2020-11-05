@@ -33,18 +33,18 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public JwtTokenResponse authenticateUser(JwtTokenRequest request) {
-        authenticate(request.getUsername(), request.getPassword());
-        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(request.getUsername());
+        authenticate(request.getEmail(), request.getPassword());
+        final UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(request.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
         return new JwtTokenResponse(token);
     }
 
-    private void authenticate(String username, String password) {
-        Objects.requireNonNull(username);
+    private void authenticate(String email, String password) {
+        Objects.requireNonNull(email);
         Objects.requireNonNull(password);
 
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
         } catch (DisabledException e) {
             throw new AuthenticationException("USER_DISABLED", e);
         } catch (BadCredentialsException e) {

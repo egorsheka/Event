@@ -1,8 +1,8 @@
 package com.event.prototype.authentication.resource;
 
 
-import com.event.prototype.dto.UserDto;
-import com.event.prototype.entity.User;
+import com.event.prototype.data.dto.UserDto;
+import com.event.prototype.data.entity.User;
 import com.event.prototype.service.AuthenticationService;
 import com.event.prototype.service.RegistrationService;
 import org.springframework.http.HttpStatus;

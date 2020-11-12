@@ -25,6 +25,21 @@ public class PictureController {
         this.pictureService = pictureService;
     }
 
+    //GET: http://localhost:8080/picture/category/id
+
+    @GetMapping("picture/category/{id}")
+    @Transactional
+    public ResponseEntity getCategoryPictureById(@PathVariable Long id){
+     return null;
+    }
+
+    @GetMapping("event/category/{id}")
+    @Transactional
+    public ResponseEntity getEventPictureById(@PathVariable Long id){
+        return null;
+    }
+
+
     @PostMapping("user/{id}/photo")
     @Transactional
     public void assignAvatar(@PathVariable Long id, @RequestParam @NotNull MultipartFile file) {
@@ -34,7 +49,7 @@ public class PictureController {
 
     @GetMapping("user/photo/{id}")
     @Transactional
-    public ResponseEntity getPictureById(@PathVariable Long id,
+    public ResponseEntity getUserPhotoById(@PathVariable Long id,
                                          @RequestParam(required = false) PictureSize size,
                                          @RequestParam(required = false) String format) {
 

@@ -16,8 +16,6 @@ public class JwtUserDetailsService implements UserDetailsService {
 
   private final UserRepository userRepository;
 
-  static List<JwtUserDetails> inMemoryUserList = new ArrayList<>();
-
 
   public JwtUserDetailsService(UserRepository userRepository) {
     this.userRepository = userRepository;

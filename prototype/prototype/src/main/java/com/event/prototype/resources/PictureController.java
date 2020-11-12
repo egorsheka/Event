@@ -3,14 +3,17 @@ package com.event.prototype.resources;
 import com.event.prototype.data.entity.Picture;
 import com.event.prototype.data.entity.User;
 import com.event.prototype.data.enums.PictureSize;
-import com.event.prototype.exceptions.ResourceNotFoundException;
 import com.event.prototype.service.PictureService;
 import com.event.prototype.service.UserService;
 import com.sun.istack.NotNull;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -25,8 +28,6 @@ public class PictureController {
         this.pictureService = pictureService;
     }
 
-    //GET: http://localhost:8080/picture/category/id
-
     @GetMapping("picture/category/{id}")
     @Transactional
     public ResponseEntity getCategoryPictureById(@PathVariable Long id){
@@ -40,10 +41,10 @@ public class PictureController {
     }
 
 
-    @PostMapping("user/{id}/photo")
+    @PostMapping("user/photo")
     @Transactional
-    public void assignAvatar(@PathVariable Long id, @RequestParam @NotNull MultipartFile file) {
-        User user = userService.findById(id).orElseThrow(() -> new ResourceNotFoundException(User.class, id, "id"));
+    public void assignAvatar(@RequestParam @NotNull MultipartFile file) {
+        User user = userService.getCurrentUser();
         userService.addAvatar(user, file);
     }
 

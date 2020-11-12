@@ -16,11 +16,13 @@ public class JwtUserDetails implements UserDetails {
 
   private static final long serialVersionUID = 5155720064139820502L;
 
+  private final Long id;
   private final String username;
   private final String password;
   private final Collection<? extends GrantedAuthority> authorities;
 
   public JwtUserDetails(User user) {
+    this.id = user.getId();
     this.username = user.getEmail();
     this.password = user.getPassword();
 
@@ -28,6 +30,10 @@ public class JwtUserDetails implements UserDetails {
     authorities.add(new SimpleGrantedAuthority(user.getRole().toString().toUpperCase()));
 
     this.authorities = authorities;
+  }
+
+  public Long getId() {
+    return id;
   }
 
   @Override

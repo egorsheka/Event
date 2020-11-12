@@ -1,5 +1,6 @@
 package com.event.prototype.service.impl;
 
+import com.event.prototype.authentication.JwtUserDetails;
 import com.event.prototype.data.entity.User;
 import com.event.prototype.repository.UserRepository;
 import com.event.prototype.service.PictureService;
@@ -37,8 +38,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public Long getCurrentUserId() {
-      Jwt jwt = (Jwt) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-      return Long.valueOf(jwt.getClaimAsString("oid"));
+        JwtUserDetails user = (JwtUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+      return user.getId();
     }
 
 }

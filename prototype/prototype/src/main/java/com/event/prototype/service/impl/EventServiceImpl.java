@@ -24,8 +24,9 @@ public class EventServiceImpl implements EventService {
     public EventDto create(EventDto dto) {
         Event event = new Event(dto);
         event.setAuthor(userService.getCurrentUser());
-        return null;
-                //eventRepository.save(event);
+        Event newEvent = eventRepository.save(event);
+
+        return new EventDto(newEvent.getId());
     }
 
     @Override

@@ -19,6 +19,8 @@ import java.util.List;
 @EqualsAndHashCode()
 public class EventDto {
 
+    private Long id;
+
     private UserBasicDataDto author;
 
     private String title;
@@ -40,6 +42,9 @@ public class EventDto {
 
     //написать Dto на User в этом классе
 
+    public EventDto(Long id){
+        this.id = id;
+    }
     public EventDto(Event event){
         this.title = event.getTitle();
         this.description = event.getDescription();

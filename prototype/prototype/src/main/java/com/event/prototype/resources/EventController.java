@@ -1,6 +1,7 @@
 package com.event.prototype.resources;
 
 import com.event.prototype.data.dto.EventDto;
+import com.event.prototype.data.dto.IdDto;
 import com.event.prototype.data.entity.User;
 import com.event.prototype.service.EventService;
 import com.event.prototype.service.UserService;
@@ -33,8 +34,8 @@ public class EventController {
 
     @PostMapping("event")
     @Transactional
-    public ResponseEntity createEvent(@PathVariable EventDto event) {
-        return ResponseEntity.ok(eventService.create(event));
+    public ResponseEntity createEvent(@RequestBody EventDto event) {
+        return ResponseEntity.ok(new IdDto(eventService.create(event).getId()));
     }
 
     @PutMapping("event/{id}")

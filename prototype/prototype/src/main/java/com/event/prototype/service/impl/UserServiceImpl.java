@@ -1,6 +1,7 @@
 package com.event.prototype.service.impl;
 
 import com.event.prototype.authentication.JwtUserDetails;
+import com.event.prototype.data.entity.Picture;
 import com.event.prototype.data.entity.User;
 import com.event.prototype.repository.UserRepository;
 import com.event.prototype.service.PictureService;
@@ -29,7 +30,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addAvatar(User user, MultipartFile file) {
-        user.getPhotos().add(pictureService.create(file));
+        Picture picture = pictureService.create(file);
+        user.setAvatar(picture);
+        user.getPhotos().add(picture);
     }
 
     @Override

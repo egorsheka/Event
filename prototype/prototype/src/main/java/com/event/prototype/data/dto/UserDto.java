@@ -29,7 +29,9 @@ public class UserDto {
         this.facebook = user.getFacebook();
         this.instagram = user.getInstagram();
         this.telegram = user.getTelegram();
-        this.avatarId = user.getAvatar().getId();
+        if(user.getAvatar() != null){
+            this.avatarId = user.getAvatar().getId();
+        }
         photoIds = new ArrayList<>();
         for(Picture p: user.getPhotos()){
             photoIds.add(p.getId());
@@ -37,7 +39,7 @@ public class UserDto {
     }
 
     private String email;
-    @JsonIgnore(value = false)
+    @JsonIgnore(value = true)
     private String password;
 
     private String name;

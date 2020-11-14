@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addAvatar(User user, MultipartFile file) {
-        user.getAvatars().add(pictureService.create(file));
+        user.getPhotos().add(pictureService.create(file));
     }
 
     @Override

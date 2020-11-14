@@ -1,11 +1,17 @@
 package com.event.prototype.data.dto;
 
+import com.event.prototype.data.entity.Picture;
 import com.event.prototype.data.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
 
 
 @Getter
@@ -23,9 +29,15 @@ public class UserDto {
         this.facebook = user.getFacebook();
         this.instagram = user.getInstagram();
         this.telegram = user.getTelegram();
+        this.avatarId = user.getAvatar().getId();
+        photoIds = new ArrayList<>();
+        for(Picture p: user.getPhotos()){
+            photoIds.add(p.getId());
+        }
     }
 
     private String email;
+    @JsonIgnore(value = false)
     private String password;
 
     private String name;
@@ -35,6 +47,8 @@ public class UserDto {
     private String facebook;
     private String instagram;
     private String telegram;
+    private Long avatarId;
+    private List<Long> photoIds;
 
 }
 

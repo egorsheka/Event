@@ -1,5 +1,9 @@
 package com.event.prototype.resources;
 
+import com.event.prototype.data.dto.EventDto;
+import com.event.prototype.data.entity.User;
+import com.event.prototype.service.EventService;
+import com.event.prototype.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -7,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController()
 public class EventController {
 
+    private final UserService userService;
+    private final EventService eventService;
 
-    @GetMapping("events/search")
-    @Transactional
-    public ResponseEntity getEventsBySearchFilters() {
-        return null;
+    public EventController(UserService userService, EventService eventService) {
+        this.userService = userService;
+        this.eventService = eventService;
     }
 
     @GetMapping("events")
@@ -20,23 +25,22 @@ public class EventController {
         return null;
     }
 
-
     @GetMapping("event/{id}")
     @Transactional
     public ResponseEntity getEvent(@PathVariable Long id) {
-        return null;
+        return ResponseEntity.ok(eventService.read(id));
     }
 
-    @PostMapping("event/{id}")
+    @PostMapping("event")
     @Transactional
-    public ResponseEntity createEvent(@PathVariable Long id) {
-        return null;
+    public ResponseEntity createEvent(@PathVariable EventDto event) {
+        return ResponseEntity.ok(eventService.create(event));
     }
 
     @PutMapping("event/{id}")
     @Transactional
     public ResponseEntity editEvent(@PathVariable Long id) {
-        return null;
+        return ResponseEntity.ok(eventService.read(id));
     }
 
     @DeleteMapping("event/{id}")
@@ -50,7 +54,6 @@ public class EventController {
     public ResponseEntity go(@PathVariable Long id) {
         return null;
     }
-
 
     @DeleteMapping("event/{id}/go")
     @Transactional

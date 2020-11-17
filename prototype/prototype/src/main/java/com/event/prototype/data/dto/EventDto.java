@@ -1,12 +1,15 @@
 package com.event.prototype.data.dto;
 
 import com.event.prototype.data.entity.Event;
+import com.event.prototype.utils.TimeHelper;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +32,10 @@ public class EventDto {
 
     private String category;
 
+    @JsonFormat(pattern = TimeHelper.DATE_TIME_FORMAT)
     private LocalDateTime start;
 
+    @JsonFormat(pattern = TimeHelper.DATE_TIME_FORMAT)
     private LocalDateTime finish;
 
     private String eventType;
@@ -46,6 +51,7 @@ public class EventDto {
         this.id = id;
     }
     public EventDto(Event event){
+        this.id = event.getId();
         this.title = event.getTitle();
         this.description = event.getDescription();
         this.category = event.getCategory();

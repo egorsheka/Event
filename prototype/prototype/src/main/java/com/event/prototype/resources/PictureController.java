@@ -3,6 +3,7 @@ package com.event.prototype.resources;
 import com.event.prototype.data.entity.Picture;
 import com.event.prototype.data.entity.User;
 import com.event.prototype.data.enums.PictureSize;
+import com.event.prototype.service.EventService;
 import com.event.prototype.service.PictureService;
 import com.event.prototype.service.UserService;
 import com.sun.istack.NotNull;
@@ -22,10 +23,12 @@ public class PictureController {
 
     private final UserService userService;
     private final PictureService pictureService;
+    private final EventService eventService;
 
-    public PictureController(UserService userService, PictureService pictureService) {
+    public PictureController(UserService userService, PictureService pictureService, EventService eventService) {
         this.userService = userService;
         this.pictureService = pictureService;
+        this.eventService = eventService;
     }
 
     @GetMapping("picture/category/{id}")
@@ -43,12 +46,19 @@ public class PictureController {
 
     @PostMapping("user/photo")
     @Transactional
-    public void assignAvatar(@RequestParam @NotNull MultipartFile file) {
+    public void assignUserAvatar(@RequestParam @NotNull MultipartFile file) {
         User user = userService.getCurrentUser();
         userService.addAvatar(user, file);
     }
 
-    @GetMapping("user/photo/{id}")
+    @PostMapping("event/{id}/picture")
+    @Transactional
+    public void assignEventAvatar(@PathVariable Long id, @RequestParam @NotNull MultipartFile file) throws Exception {
+        User user = userService.getCurrentUser();
+        eventService.addAvatar(user, file, id);
+    }
+
+    @GetMapping("picture/{id}")
     @Transactional
     public ResponseEntity getUserPhotoById(@PathVariable Long id,
                                          @RequestParam(required = false) PictureSize size,

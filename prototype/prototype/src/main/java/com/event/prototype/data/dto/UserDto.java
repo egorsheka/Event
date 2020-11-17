@@ -39,7 +39,7 @@ public class UserDto {
     }
 
     private String email;
-    @JsonIgnore(value = true)
+    @JsonIgnore(value = false)
     private String password;
 
     private String name;

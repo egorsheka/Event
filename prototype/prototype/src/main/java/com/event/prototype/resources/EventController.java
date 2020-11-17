@@ -1,13 +1,14 @@
 package com.event.prototype.resources;
 
 import com.event.prototype.data.dto.EventDto;
+import com.event.prototype.data.dto.EventDtoForList;
 import com.event.prototype.data.dto.IdDto;
-import com.event.prototype.data.entity.User;
 import com.event.prototype.service.EventService;
 import com.event.prototype.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController()
 public class EventController {
@@ -20,16 +21,23 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping("events")
-    @Transactional
-    public ResponseEntity getEventsWithStatus(@PathVariable Long id) {
-        return null;
-    }
+//    @GetMapping("events")
+//    @Transactional
+//    public ResponseEntity getEventsWithStatus(@PathVariable Long id) {
+//        return null;
+//    }
 
     @GetMapping("event/{id}")
     @Transactional
     public ResponseEntity getEvent(@PathVariable Long id) {
         return ResponseEntity.ok(eventService.read(id));
+    }
+
+    @GetMapping("events")
+    @Transactional
+    public ResponseEntity findAll() {
+        List<EventDtoForList> list = eventService.findAll();
+        return ResponseEntity.ok(list);
     }
 
     @PostMapping("event")

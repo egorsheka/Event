@@ -29,7 +29,9 @@ public class EventDtoForList {
         this.id = event.getId();
         this.title = event.getTitle();
         this.description = event.getDescription();
-        this.start = event.getStart().toLocalDate();
+        if(event.getStart() != null){
+            this.start = event.getStart().toLocalDate();
+        }
         if(event.getAvatar() != null){
             avatarId = event.getAvatar().getId();
         }

@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class PictureController {
 
-
     private final UserService userService;
     private final PictureService pictureService;
     private final EventService eventService;

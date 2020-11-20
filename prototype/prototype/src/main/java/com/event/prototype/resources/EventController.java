@@ -3,6 +3,8 @@ package com.event.prototype.resources;
 import com.event.prototype.data.dto.EventDto;
 import com.event.prototype.data.dto.EventDtoForList;
 import com.event.prototype.data.dto.IdDto;
+import com.event.prototype.data.entity.Event;
+import com.event.prototype.data.entity.User;
 import com.event.prototype.service.EventService;
 import com.event.prototype.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -58,15 +60,19 @@ public class EventController {
         return null;
     }
 
-    @GetMapping("event/{id}/go")
+    @PostMapping("event/{id}/go")
     @Transactional
     public ResponseEntity go(@PathVariable Long id) {
+        User user = userService.getCurrentUser();
+        eventService.goEvent(id, user);
         return null;
     }
 
-    @DeleteMapping("event/{id}/go")
+    @DeleteMapping("event/{id}/leave")
     @Transactional
     public ResponseEntity leave(@PathVariable Long id) {
+        User user = userService.getCurrentUser();
+        eventService.leaveEvent(id, user);
         return null;
     }
 

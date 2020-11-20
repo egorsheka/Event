@@ -32,7 +32,9 @@ public class EventServiceImpl implements EventService {
     @Override
     public EventDto create(EventDto dto) {
         Event event = new Event(dto);
-        event.setAuthor(userService.getCurrentUser());
+        User user = userService.getCurrentUser();
+        event.setAuthor(user);
+        event.getParticipants().add(user);
         Event newEvent = eventRepository.save(event);
 
         return new EventDto(newEvent.getId());
@@ -70,6 +72,25 @@ public class EventServiceImpl implements EventService {
             dtoEvents.add(new EventDtoForList(e));
         }
         return dtoEvents;
+    }
+
+    @Override
+    public Event findById(Long id) {
+        return eventRepository.findById(id).get();
+    }
+
+    @Override
+    public void goEvent(Long id, User user) {
+        Event event = eventRepository.findById(id).get();
+        if(!event.getParticipants().contains(user)){
+            event.getParticipants().add(user);
+        }
+    }
+
+    @Override
+    public void leaveEvent(Long id, User user) {
+        Event event = eventRepository.findById(id).get();
+        event.getParticipants().remove(user);
     }
 
     @Override

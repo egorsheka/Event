@@ -6,7 +6,6 @@ import com.event.prototype.data.entity.User;
 import com.event.prototype.repository.UserRepository;
 import com.event.prototype.service.PictureService;
 import com.event.prototype.service.UserService;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

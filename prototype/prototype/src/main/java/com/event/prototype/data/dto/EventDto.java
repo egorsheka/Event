@@ -14,7 +14,9 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -45,6 +47,7 @@ public class EventDto {
     private String place;
 
     private List<Long> pictureIds;
+    private Set<Long> userIds;
 
     public EventDto(Long id){
         this.id = id;
@@ -58,7 +61,8 @@ public class EventDto {
         this.start = event.getStart();
         this.finish = event.getFinish();
         this.place = event.getPlace();
-        pictureIds = new ArrayList<>();
+        this.pictureIds = new ArrayList<>();
+        this.userIds = new HashSet<>();
     }
 
 }

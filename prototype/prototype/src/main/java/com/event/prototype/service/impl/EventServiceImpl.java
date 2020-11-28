@@ -34,7 +34,7 @@ public class EventServiceImpl implements EventService {
         Event event = new Event(dto);
         User user = userService.getCurrentUser();
         event.setAuthor(user);
-        event.getParticipants().add(user);
+        event.getUsers().add(user);
         Event newEvent = eventRepository.save(event);
 
         return new EventDto(newEvent.getId());
@@ -47,6 +47,9 @@ public class EventServiceImpl implements EventService {
 
         for(Picture p: event.getPictures()){
             eventDto.getPictureIds().add(p.getId());
+        }
+        for (User u: event.getUsers()){
+            eventDto.getUserIds().add(u.getId());
         }
         UserBasicDataDto userDto = new UserBasicDataDto(userService.getCurrentUser());
         eventDto.setAuthor(userDto);
@@ -82,15 +85,16 @@ public class EventServiceImpl implements EventService {
     @Override
     public void goEvent(Long id, User user) {
         Event event = eventRepository.findById(id).get();
-        if(!event.getParticipants().contains(user)){
-            event.getParticipants().add(user);
+        user.getEvents().add(event);
+        if(!event.getUsers().contains(user)){
+            event.getUsers().add(user);
         }
     }
 
     @Override
     public void leaveEvent(Long id, User user) {
         Event event = eventRepository.findById(id).get();
-        event.getParticipants().remove(user);
+        event.getUsers().remove(user);
     }
 
     @Override

@@ -22,6 +22,7 @@ import java.util.ListIterator;
 public class UserDto {
 
     public UserDto(User user){
+        this.id = user.getId();
         this.email = user.getEmail();
         this.name = user.getName();
         this.surname = user.getSurname();
@@ -38,6 +39,7 @@ public class UserDto {
         }
     }
 
+    private Long id;
     private String email;
     @JsonIgnore(value = false)
     private String password;

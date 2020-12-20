@@ -1,16 +1,16 @@
-package com.event.prototype.config;
+package com.event.prototype.data.converter;
 
-import com.event.prototype.data.enums.SortOrder;
+import com.event.prototype.data.enums.EventSortOrder;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 
 
 @Component
-public class SortOrderConvertor implements Converter<String, SortOrder> {
+public class EventSortOrderConvertor implements Converter<String, EventSortOrder> {
 
     @Override
-    public SortOrder convert(String source) {
-        return SortOrder.valueOf();
+    public EventSortOrder convert(String source) {
+        return EventSortOrder.valueOf(source.toUpperCase());
     }
 }

@@ -1,2 +1,2 @@
-package com.event.prototype.data.enums;public class SortOrder {
+package com.event.prototype.data.enums;public enum SortOrder {
 }
